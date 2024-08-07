@@ -1,0 +1,15 @@
+<div class="card-container">
+  <div class="card-body">
+    <div class="text-container">
+      <div>{{ car.model }}</div>
+      <div>{{ car.engine }}</div>
+    </div>
+    <div style="width: 1rem" [style.background-color]="car.color"></div>
+  </div>
+
+  <app-button-custom
+    (click)="deleteCar.emit(car.id)"
+    label="remove"
+    type="delete"
+  />
+</div>

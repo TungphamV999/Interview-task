@@ -1,0 +1,11 @@
+<button
+  [ngClass]="{
+    active: isActive,
+    classic: type === 'classic',
+    navigation: type === 'navigation',
+    addition: type === 'addition',
+    deletion: type === 'delete'
+  }"
+>
+  {{ label }}
+</button>

@@ -1,0 +1,44 @@
+.navigation {
+  padding: 1rem 2rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: white;
+  font-weight: 600;
+}
+
+.classic {
+  padding: 0.25rem 1rem;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  background-color: white;
+  font-weight: 600;
+}
+
+.addition {
+  padding: 0.25rem 1rem;
+  border: 1.5px solid rgb(39, 121, 214);
+  color: rgb(39, 121, 214);
+  border-radius: 0.2rem;
+  background-color: white;
+  font-weight: 600;
+}
+
+.deletion {
+  padding: 0.25rem 1rem;
+  border: 1.5px solid rgb(214, 39, 39);
+  color: rgb(214, 39, 39);
+  border-radius: 0.2rem;
+  background-color: white;
+  font-weight: 600;
+}
+
+button.active {
+  color: white;
+  background-color: rgb(93, 161, 14) !important;
+  cursor: auto !important;
+}
+
+button:hover {
+  background-color: rgba(243, 242, 242, 0.438);
+  cursor: pointer;
+}
