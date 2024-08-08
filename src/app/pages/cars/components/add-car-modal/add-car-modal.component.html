@@ -1,0 +1,20 @@
+<div [formGroup]="carForm" class="modal-container">
+  <h3 style="text-align: center">Add Car</h3>
+  <div style="display: flex; flex-direction: column; gap: 1rem">
+    <div style="display: flex; justify-content: space-between">
+      <span>model</span>
+      <input formControlName="model" />
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <span>engine</span>
+      <input formControlName="engine" />
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <span>color</span>
+      <input formControlName="color" />
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center; margin-top: 3rem">
+    <app-button-custom (click)="addNewCar()" label="Add" type="addition" />
+  </div>
+</div>

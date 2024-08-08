@@ -4,3 +4,15 @@
   margin-bottom: 3rem;
   justify-content: center;
 }
+
+.content {
+  flex-grow: 1;
+  padding: 2.44rem 2.56rem;
+  overflow: auto;
+
+  &__no__sidenav {
+    position: fixed;
+    left: 0;
+    width: 95vw;
+  }
+}

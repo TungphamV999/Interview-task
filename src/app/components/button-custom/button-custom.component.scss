@@ -1,44 +1,47 @@
-.navigation {
-  padding: 1rem 2rem;
+$border-radius: 0.5rem;
+$padding: 0.4rem 1rem;
+$white: #ffffff;
+$black: #000000;
+$addition-color: rgb(39, 121, 214);
+$deletion-color: rgb(214, 39, 39);
+$active-bg-color: rgb(93, 161, 14);
+$hover-bg-color: rgba(243, 242, 242, 0.438);
+
+.button {
+  padding: $padding;
+  border-radius: $border-radius;
+  background-color: $white;
+  font-weight: 600;
   border: 1px solid black;
-  border-radius: 0.5rem;
-  background-color: white;
-  font-weight: 600;
+
+  &.navigation {
+    padding: 1rem 2rem;
+    border: 1px solid $black;
+  }
+
+  &.classic {
+    padding: 0.5rem 1rem;
+    border: 1px solid $black;
+  }
+
+  &.addition {
+    border: 1.5px solid $addition-color;
+    color: $addition-color;
+  }
+
+  &.deletion {
+    border: 1.5px solid $deletion-color;
+    color: $deletion-color;
+  }
 }
 
-.classic {
-  padding: 0.25rem 1rem;
-  border: 1px solid black;
-  border-radius: 0.2rem;
-  background-color: white;
-  font-weight: 600;
-}
-
-.addition {
-  padding: 0.25rem 1rem;
-  border: 1.5px solid rgb(39, 121, 214);
-  color: rgb(39, 121, 214);
-  border-radius: 0.2rem;
-  background-color: white;
-  font-weight: 600;
-}
-
-.deletion {
-  padding: 0.25rem 1rem;
-  border: 1.5px solid rgb(214, 39, 39);
-  color: rgb(214, 39, 39);
-  border-radius: 0.2rem;
-  background-color: white;
-  font-weight: 600;
-}
-
-button.active {
-  color: white;
-  background-color: rgb(93, 161, 14) !important;
+.button.active {
+  color: $white;
+  background-color: $active-bg-color !important;
   cursor: auto !important;
 }
 
-button:hover {
-  background-color: rgba(243, 242, 242, 0.438);
+.button:hover {
+  background-color: $hover-bg-color;
   cursor: pointer;
 }
