@@ -11,4 +11,5 @@ export class ButtonCustomComponent {
   @Input() type: ButtonType = 'classic';
   @Input() isActive = false;
   @Input({ required: true }) label!: string;
+  @Input() isDisabled = false;
 }

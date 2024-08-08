@@ -2,19 +2,37 @@
   <h3 style="text-align: center">Add Car</h3>
   <div style="display: flex; flex-direction: column; gap: 1rem">
     <div style="display: flex; justify-content: space-between">
-      <span>model</span>
+      <span>Model</span>
       <input formControlName="model" />
     </div>
     <div style="display: flex; justify-content: space-between">
-      <span>engine</span>
+      <span>Engine</span>
       <input formControlName="engine" />
     </div>
     <div style="display: flex; justify-content: space-between">
-      <span>color</span>
+      <span>Color</span>
       <input formControlName="color" />
     </div>
   </div>
-  <div style="display: flex; justify-content: center; margin-top: 3rem">
-    <app-button-custom (click)="addNewCar()" label="Add" type="addition" />
+
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+    "
+    [style.margin-top]="showError ? '2rem' : '3.5rem'"
+  >
+    @if (showError) {
+    <div style="color: red">All fields are required</div>
+    }
+    <app-button-custom
+      [isDisabled]="!!(loading$ | async)"
+      (click)="addNewCar()"
+      label="Add"
+      type="addition"
+    />
   </div>
 </div>

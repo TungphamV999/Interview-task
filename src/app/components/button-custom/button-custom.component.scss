@@ -41,7 +41,13 @@ $hover-bg-color: rgba(243, 242, 242, 0.438);
   cursor: auto !important;
 }
 
-.button:hover {
+button:hover {
   background-color: $hover-bg-color;
   cursor: pointer;
+}
+
+button:disabled {
+  border: 1px solid #999999 !important;
+  background-color: #cccccc !important;
+  color: #666666 !important;
 }

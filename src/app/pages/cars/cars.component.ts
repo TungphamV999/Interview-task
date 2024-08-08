@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService, Car } from '../../services/api.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddCarModalComponent } from './components/add-car-modal/add-car-modal.component';
-import { Observable } from 'rxjs';
+import { Observable, takeUntil } from 'rxjs';
+import { BaseComponent } from '../../components/base.component';
 
 export type CarType = 'All' | 'Octavia' | 'Kamiq' | 'Superb' | 'Kodiaq';
 
@@ -11,38 +12,45 @@ export type CarType = 'All' | 'Octavia' | 'Kamiq' | 'Superb' | 'Kodiaq';
   templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.scss'],
 })
-export class CarsComponent {
+export class CarsComponent extends BaseComponent {
   loading$!: Observable<boolean>;
-  cars!: Car[];
   filteredCars!: Car[];
   selectedCarType: CarType = 'All';
-  carTypes: CarType[] = ['All', 'Octavia', 'Kamiq', 'Superb', 'Kodiaq'];
+  readonly carTypes: CarType[] = [
+    'All',
+    'Octavia',
+    'Kamiq',
+    'Superb',
+    'Kodiaq',
+  ];
+  private cars!: Car[];
 
   constructor(private apiService: ApiService, private dialog: MatDialog) {
+    super();
     this.getCars();
     this.loading$ = this.apiService.loading$;
   }
 
-  addCar() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.position = {
-      top: '-5rem',
-      left: '40%',
+  addCar(): void {
+    const dialogConfig: MatDialogConfig = {
+      position: { top: '-10rem', left: '40%' },
+      width: '25rem',
+      height: '17rem',
     };
-    dialogConfig.width = '25rem';
-    dialogConfig.height = '17rem';
     this.dialog.open(AddCarModalComponent, dialogConfig);
   }
 
-  getCars() {
-    this.apiService.getCars().subscribe();
-    this.apiService.cars$.subscribe((cars) => {
-      this.cars = cars;
-      this.filteredCars = cars;
-    });
+  getCars(): void {
+    this.apiService.getCars().pipe(takeUntil(this.ngUnsubscribe$)).subscribe();
+    this.apiService.cars$
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((cars) => {
+        this.cars = cars;
+        this.filteredCars = cars;
+      });
   }
 
-  filterCars(carType: CarType) {
+  filterCars(carType: CarType): void {
     this.selectedCarType = carType;
     this.filteredCars =
       carType === 'All'
@@ -50,7 +58,10 @@ export class CarsComponent {
         : this.cars.filter((car) => car.model === carType);
   }
 
-  deleteCar(id: string) {
-    this.apiService.deleteCar(id).subscribe();
+  deleteCar(id: string): void {
+    this.apiService
+      .deleteCar(id)
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe(() => this.filterCars(this.selectedCarType));
   }
 }

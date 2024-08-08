@@ -1,4 +1,7 @@
 <div class="cars-container">
+  @if (loading$ | async) {
+  <div>LOADING...</div>
+  } @else {
   <app-button-custom (click)="addCar()" label="Add car" type="addition" />
   <div style="display: flex; justify-content: center; gap: 2rem">
     @for (type of carTypes; track $index) {
@@ -10,13 +13,14 @@
     />
     }
   </div>
-  @if (loading$ | async) {
-  <div>LOADING...</div>
-  } @else {
+
+  @if (filteredCars.length) {
   <div style="display: flex; gap: 2rem">
     @for (car of filteredCars; track $index) {
     <app-car-card [car]="car" (deleteCar)="deleteCar($event)"></app-car-card>
     }
   </div>
-  }
+  } @else {
+  <div>No car found.</div>
+  } }
 </div>

@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'cars',
     component: CarsComponent,
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({

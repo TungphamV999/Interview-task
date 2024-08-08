@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, switchMap, tap } from 'rxjs';
 
 export interface Car {
   color: string;
@@ -30,7 +30,8 @@ export class ApiService {
       tap((response) => {
         this.cars$.next(response.data);
         this.loading$.next(false);
-      })
+      }),
+      catchError(() => EMPTY)
     );
   }
 
